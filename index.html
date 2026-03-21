@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Poonam Singh | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            color: white;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px;
+        }
+
+        header img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        section {
+            padding: 30px;
+            margin: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 12px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #00ffff;
+            padding-bottom: 8px;
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+        }
+
+        .btn {
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .delete { background: red; color: white; }
+        .update { background: orange; color: black; }
+
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input, form textarea {
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        form button {
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background-color: #00ffff;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <img src="profile.jpg" alt="Poonam Singh">
+    <h1>Poonam Singh</h1>
+    <p>BCA Student | Cloud Computing | Frontend Developer</p>
+</header>
+
+<section>
+    <h2>About Me</h2>
+    <p>
+        I am Poonam Singh, currently pursuing BCA in Cloud Computing at Kristu Jayanti University.
+        I am passionate about Artificial Intelligence, Machine Learning, Cyber Security and Web Development.
+        I aim to build innovative solutions and grow as a skilled software developer.
+    </p>
+</section>
+<section>
+    <h2>Technical Skills</h2>
+    <ul>
+        <li>C Programming</li>
+        <li>C++</li>
+        <li>Python</li>
+        <li>Data Structures</li>
+        <li>HTML, CSS, JavaScript</li>
+        <li>Frontend Development</li>
+    </ul>
+</section>
+<section>
+    <h2>Certifications</h2>
+    <ul>
+        <li>
+            front end developer
+            
+        </li>
+        <li>
+            Microsoft Learn – Cyber Security Concepts (Sep 2025)
+            
+        </li>
+        <li>
+            AWS Academy Graduate – Generative AI Foundations (12 Hours – Oct 2025)
+            
+        </li>
+        <li>
+            node js and github
+        </li>
+        <li>
+            Machine learning and deep learning
+        </li>
+        <li>
+            digital engineering
+        </li>
+        <li>
+         microsoft copilot and cloud
+        </li>
+        
+    </ul>
+
+    
+</section>
+
+
+
+<section>
+    <h2>Projects</h2>
+    <ul>
+        <li>
+            <strong>Instagram Clone</strong> – Developed a frontend Instagram UI clone using HTML, CSS and JavaScript.
+        </li>
+        <li>
+            <strong>Expense Tracker (Python)</strong> – Created a Python-based application to manage daily expenses and track spending.
+        </li>
+        <li>
+            hosting of websites with frontend backend and database
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Achievements</h2>
+    <ul>
+        <li>AWS Academy Graduate – Cloud Foundations Badge</li>
+        <li>AWS Generative AI Foundations Badge</li>
+        <li>Microsoft Cyber Security Learning Achievement</li>
+    </ul>
+</section>
+
+
+<section>
+    <h2>Connect With Me</h2>
+    <p>Email: poonamsingh76645@gmail.com</p>
+    <p>GitHub: https://github.com/poonamsingh-arch</p>
+    
+</section> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+    <img src="profile.jpg">
+    <h1>Poonam Singh</h1>
+    <p>BCA Student | Cloud Computing | Frontend Developer</p>
+</header>
+
+<section>
+    <h2>About Me</h2>
+    <p>I am passionate about AI, ML, Cyber Security and Web Development.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="email" id="email" placeholder="Your Email" required>
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+
+    <p id="responseMessage"></p>
+</section>
+
+<section>
+    <h2>All Messages</h2>
+    <button onclick="getMessages()">Load Messages</button>
+    <ul id="messageList"></ul>
+</section>
+
+<footer>
+    © 2026 Poonam Singh
+</footer>
+
+<script>
+const API = "https://poonam-backend-1.onrender.com/messages";
+
+// ✅ CREATE (POST)
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch(API, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        document.getElementById("responseMessage").innerText = "Message sent!";
+        document.getElementById("contactForm").reset();
+        getMessages();
+    });
+});
+
+// ✅ READ (GET)
+function getMessages() {
+    fetch(API)
+    .then(res => res.json())
+    .then(data => {
+        const list = document.getElementById("messageList");
+        list.innerHTML = "";
+
+        data.forEach(msg => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                ${msg.name} - ${msg.message}
+                <button class="btn delete" onclick="deleteMsg('${msg._id}')">Delete</button>
+                <button class="btn update" onclick="updateMsg('${msg._id}')">Update</button>
+            `;
+            list.appendChild(li);
+        });
+    });
+}
+
+// ✅ DELETE
+function deleteMsg(id) {
+    fetch(API + "/" + id, {
+        method: "DELETE"
+    })
+    .then(() => getMessages());
+}
+
+// ✅ UPDATE (PUT)
+function updateMsg(id) {
+    const newMsg = prompt("Enter new message:");
+
+    fetch(API + "/" + id, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ message: newMsg })
+    })
+    .then(() => getMessages());
+}
+</script>
+
+</body>
+</html>
